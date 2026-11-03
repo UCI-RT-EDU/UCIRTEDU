@@ -596,11 +596,24 @@
       <p class="dek">Complete each shift.</p>
 
       <div class="block" id="checklistFormWrap" style="display:none;">
+        <div id="shiftNotesView" style="display:none; margin-bottom:34px;">
+          <h3>Previous shift notes</h3>
+          <div style="margin:0 0 14px 0; padding:12px 16px; border:2px solid #B197FC; border-radius:6px; background:rgba(177,151,252,0.16); font-size:16px; line-height:1.5;">
+            <strong>Please do not write into this Excel sheet.</strong> The data shown here comes from the daily checklist form filled out below.
+          </div>
+          <iframe id="shiftNotesFrame" title="Shift notes" scrolling="no" style="width:100%; min-width:700px; height:392px; border:2px solid var(--checklist); border-radius:4px; background:#fff;" loading="lazy"></iframe>
+          <div style="margin-top:12px; font-size:16px; line-height:1.6;">
+            <p style="margin:0 0 6px 0; font-weight:700;">How to read the shift notes</p>
+            <ul style="margin:0; padding-left:22px;">
+              <li><span style="display:inline-block; width:14px; height:14px; border-radius:3px; background:#3FAE5A; border:1px solid rgba(0,0,0,0.35); vertical-align:-2px; margin-right:8px;"></span><strong>Green</strong> = no misses from the previous shift.</li>
+              <li><span style="display:inline-block; width:14px; height:14px; border-radius:3px; background:#E5484D; border:1px solid rgba(0,0,0,0.35); vertical-align:-2px; margin-right:8px;"></span><strong>Red</strong> = something was missed.</li>
+              <li>To see which task was missed, open the full Excel workbook from the bottom right of the sheet and look for the cell highlighted <span style="display:inline-block; width:14px; height:14px; border-radius:3px; background:#FFD43B; border:1px solid rgba(0,0,0,0.35); vertical-align:-2px; margin-right:8px;"></span><strong>yellow</strong>.</li>
+              <li>This sheet shows the last 16 days of entries. The most recent entry is at the top.</li>
+            </ul>
+          </div>
+        </div>
         <h3 id="checklistTitle">Daily checklist</h3>
         <p class="note" style="margin:-4px 0 14px; font-size:17px;">Please fill out completely and submit after every shift.</p>
-        <div id="shiftNotesView" style="display:none; margin-bottom:26px;">
-          <iframe id="shiftNotesFrame" title="Shift notes" style="width:100%; height:420px; border:2px solid var(--checklist); border-radius:4px; background:#fff;" loading="lazy"></iframe>
-        </div>
         <iframe id="checklistFormFrame" title="Shift Lead daily checklist" style="width:100%; height:900px; border:2px solid var(--checklist); border-radius:4px; background:#fff;" loading="lazy"></iframe>
         <p class="note" style="margin-top:10px;"><a id="checklistFormLink" target="_blank" rel="noopener" style="display:inline-block; padding:10px 18px; border:2px solid var(--checklist); border-radius:4px; color:var(--checklist); font-weight:800; font-size:18px; text-decoration:none;">Open Daily Checklist in a new tab →</a><br>Use this if the form doesn't load above.</p>
       </div>
@@ -929,7 +942,7 @@
   const SITES = {
     orange: {
       checklistTitle: "Daily checklist and shift notes",
-      shiftNotesEmbedUrl: "https://healthuci.sharepoint.com/sites/GRP-GRP-UCIHealthLead/_layouts/15/Doc.aspx?sourcedoc={de0eb9c9-d8ed-4e90-9bfc-7cd1f12069ac}&action=embedview&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True",
+      shiftNotesEmbedUrl: "https://healthuci.sharepoint.com/sites/GRP-GRP-UCIHealthLead/_layouts/15/Doc.aspx?sourcedoc={de0eb9c9-d8ed-4e90-9bfc-7cd1f12069ac}&action=embedview&wdAllowInteractivity=False&ActiveCell='Recent'!A1&Item='Recent'!A1%3AF16",
       monthlyFormId: "dGqfIFMJpE2HKkcxkbtXXQ6RwpTTIaRFs2aOxB3lD6xUQjdDQlJZSFFMSkhKQVpKWlBQV1NWQjc2OC4u",
       weeklyFormId: "dGqfIFMJpE2HKkcxkbtXXQ6RwpTTIaRFs2aOxB3lD6xUN0FWRzI3SE1XUzlDMkJSSUJPTDc2TENXRi4u",
       checklistFormId: "dGqfIFMJpE2HKkcxkbtXXThRB3TdHo5EsRrxhnSJueRUQzhJMlE1OTNJWkpRTk1TVUFaNlFDRDM0VSQlQCN0PWcu",
@@ -1037,6 +1050,19 @@
       }
     },
     irvine: { name:"Irvine", facility:"[Facility name]",
+      checklistTitle: "Daily checklist and shift notes",
+      shiftNotesEmbedUrl: "https://healthuci-my.sharepoint.com/personal/irvind_hs_uci_edu/_layouts/15/Doc.aspx?sourcedoc={c8b194f4-9781-48d2-9432-1cf7976ced71}&action=embedview&wdAllowInteractivity=False&ActiveCell='Recent'!A1&Item='Recent'!A1%3AF16",
+      hideDefaultRounds: true,
+      equipmentRoundsExtra: `
+        <ul style="margin:0; padding-left:22px; line-height:1.8;">
+          <li><strong>4th</strong> – 4 U, 2LTV, 1HF</li>
+          <li><strong>5th</strong> – 1 U, 0 Air, 1 HF, 1LTV</li>
+          <li><strong>6th</strong> – 1 U, 0 Air, 1HF 1LTV</li>
+          <li><strong>7th</strong> – 1 U, 0 Air, 1HF, 1LTV</li>
+          <li><strong>ED</strong> – 1-Servo N, 1 Air, 2 HF, 2LTV</li>
+          <li><strong>PARR</strong> – 1 Servo Air, 1 HF, 1 LTV</li>
+        </ul>
+      `,
       checklistFormId: "dGqfIFMJpE2HKkcxkbtXXQ6RwpTTIaRFs2aOxB3lD6xUQ1cxTjZQMU1HSlRQUzZZWlBKWFVBMVNKSi4u",
       departmentGoalsText: `
         <ol style="margin:0; padding-left:24px; line-height:1.7;">
@@ -1088,8 +1114,8 @@
       equipmentContacts: [
         {org:"Mallinckrodt (iNO)", phone:"877-566-7466", notes:"Tanks & extra machines — acct #2000177"},
       ],
-      contacts:{ onunit:[{role:"RT Director", name:"[name]", ext:"[ext]", pager:"[#]"},{role:"House Supervisor", name:"[name]", ext:"[ext]", pager:"[#]"}], biomed:[
-        {org:"Biomed Engineering", name:"[name]", phone:"[#]", covers:"[all equipment]"},
+      contacts:{ onunit:[{role:"RT Dept", name:"", ext:"", pager:"579-2546"},{role:"Obs", name:"", ext:"", pager:"579-2401"},{role:"PACU", name:"", ext:"", pager:"579-3171"},{role:"Security", name:"", ext:"", pager:"949-824-5223"},{role:"House Supervisor", name:"", ext:"", pager:"657-562-8333"},{role:"ALERT Team", name:"", ext:"", pager:"579-5659"},{role:"ED", name:"", ext:"", pager:"579-2444"},{role:"SPD", name:"", ext:"", pager:"579-3134"},{role:"Pharmacy", name:"", ext:"", pager:"579-2500"},{role:"Facilities", name:"", ext:"", pager:"657-579-5000"}], biomed:[
+        {org:"Biomed Engineering", name:"[name]", phone:"456-5366", covers:"[all equipment]"},
         {org:"Mallinckrodt (iNO)", name:"", phone:"877-566-7466", covers:"Tanks & extra machines — acct #2000177"},
       ] }
     },
@@ -1194,6 +1220,7 @@
         {role:"Code Blue", name:"", ext:"", pager:"700"},
         {role:"Rapid Response", name:"", ext:"", pager:"700"},
         {role:"Pharmacy", name:"", ext:"", pager:"602-6806"},
+        {role:"Central Supply", name:"", ext:"", pager:"657-499-7932"},
         {role:"EKG Tech Office", name:"", ext:"", pager:"602-6704"},
         {role:"Employee Assist", name:"", ext:"", pager:"(949) 824-0500"},
       ], biomed:[
@@ -1376,7 +1403,7 @@
         <tr><td class="editable">[e.g., Difficult airway cart]</td><td class="editable">[fill in]</td><td class="editable"></td><td class="editable"></td></tr>
       </table>
     `;
-    document.getElementById('equipmentRoundsContent').innerHTML = SITES[key].equipmentRoundsText || defaultRounds;
+    document.getElementById('equipmentRoundsContent').innerHTML = (SITES[key].equipmentRoundsText || (SITES[key].hideDefaultRounds ? '' : defaultRounds)) + (SITES[key].equipmentRoundsExtra || '');
 
     document.getElementById('troubleshootingContent').innerHTML = SHARED_TROUBLESHOOTING;
   }
@@ -1403,6 +1430,7 @@
       } else {
         document.getElementById('checklistFormFrame').removeAttribute('src');
         wrap.style.display = 'none'; stat.style.display = '';
+        document.getElementById('shiftNotesFrame').removeAttribute('src');
       }
     })();
     (function(){
